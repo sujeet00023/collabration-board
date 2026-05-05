@@ -1,17 +1,17 @@
-
-  {
-  "name": "collab-board",
+{
+  "name": "collab-board-frontend",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cd frontend && npm run dev",
-    "build": "cd frontend && npm run build",
-    "start": "cd frontend && npm run start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
     "@dnd-kit/sortable": "^8.0.0",
     "@dnd-kit/utilities": "^3.2.2",
-    "all": "^0.0.0",
     "axios": "^1.6.2",
     "next": "14.0.4",
     "react": "^18",
