@@ -9,12 +9,14 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+backend/node_modules
 
 # testing
 /coverage
 
 # next.js
-/.next/
+.next/
+frontend/.next/
 /out/
 
 # production
