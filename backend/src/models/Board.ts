@@ -1,4 +1,4 @@
-import mongoose, { Document, mongo, Schema } from "mongoose";
+import mongoose, { Document, mongo, Schema, Types} from "mongoose";
 
 export interface ICard {
     _id: mongoose.Types.ObjectId
@@ -16,7 +16,7 @@ export interface IColumn {
     _id: mongoose.Types.ObjectId
     title: string
     order: number
-    cards: ICard[]
+    cards: Types.DocumentArray<ICard & Document>
 
 }
 
@@ -25,7 +25,7 @@ export interface IBoards extends Document {
      description: string
      owner: mongoose.Types.ObjectId
      members: mongoose.Types.ObjectId[]
-     columns: IColumn[]
+     columns: Types.DocumentArray<IColumn & Document>
      inviteCode: string
      createdAt: Date
      updatedAt: Date
