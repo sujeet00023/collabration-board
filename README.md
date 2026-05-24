@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CollabBoard 🧩
 
-## Getting Started
+Real-time collaborative Kanban board — Trello + Notion style.
+Live cursors · Drag & drop · Board chat · Invite links · 100% Free stack
 
-First, run the development server:
+---
 
+## ✨ Features
+
+| Feature | Status |
+|---|---|
+| Register / login with JWT | ✅ |
+| Create, rename, delete boards | ✅ |
+| Add / rename / delete columns | ✅ |
+| Add / edit / delete cards with labels | ✅ |
+| Drag & drop cards between columns | ✅ |
+| Real-time sync via Socket.io | ✅ |
+| Live cursors — see teammates working | ✅ |
+| Presence bar — who is online | ✅ |
+| Board chat with message grouping | ✅ |
+| Invite via link or 8-char code | ✅ |
+| Mobile responsive | ✅ |
+
+---
+
+## ⚡ Local Setup
+
+### Backend
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend && npm install
+cp .env.example .env   # fill MONGODB_URI + JWT_SECRET
+npm run dev            # http://localhost:5000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Frontend
+```bash
+cd frontend && npm install
+cp .env.local.example .env.local
+npm run dev            # http://localhost:3000
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Deploy (Free)
 
-## Learn More
+| Service | Platform |
+|---|---|
+| Frontend | Vercel — add NEXT_PUBLIC_API_URL |
+| Backend | Render — add MONGODB_URI + JWT_SECRET + FRONTEND_URL |
+| Database | MongoDB Atlas M0 free tier |
 
-To learn more about Next.js, take a look at the following resources:
+> Tip: Add an UptimeRobot monitor pinging /health every 5 min to keep Render awake.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔌 Key Socket Events
 
-## Deploy on Vercel
+client→server: board:join, board:leave, cursor:move, cursor:leave,
+               chat:message, card:moved, card:created, card:updated,
+               card:deleted, column:created, column:deleted
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+server→client: room:members, user:joined, user:left, cursor:moved,
+               cursor:left, chat:message, card:*, column:*
