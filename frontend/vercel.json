@@ -4,6 +4,6 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "env": {
-    "NEXT_PUBLIC_API_URL": "@collab-board-api-url"
+    "NEXT_PUBLIC_API_URL": "https://collabration-board.onrender.com"
   }
 }
