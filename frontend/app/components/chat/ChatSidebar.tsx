@@ -37,7 +37,7 @@ export default function ChatSidebar({messages, onSend, onClose}: Props) {
         e?.preventDefault()
         if (!input.trim()) return
         onSend(input.trim())
-        setInput(' ')
+        setInput('')
     }
 
 
@@ -92,7 +92,7 @@ export default function ChatSidebar({messages, onSend, onClose}: Props) {
             const grouped = isSameUSerAsPrev(idx)
 
             return (
-              <div key={msg.id} className={`flex gap-2 ${isOwn ? 'flex-row-reverse' : ''} ${grouped ? 'mt-0.5' : 'mt-3'}`}>
+              <div key={msg.id || `${msg.userId}-${msg.timestamp}-${idx}`} className={`flex gap-2 ${isOwn ? 'flex-row-reverse' : ''} ${grouped ? 'mt-0.5' : 'mt-3'}`}>
                 {/* Avatar — only show on first message in a group */}
                 {!grouped && !isOwn && (
                   <div

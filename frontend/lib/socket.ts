@@ -8,7 +8,7 @@ let socket: Socket | null = null
  * Call connect() on login, disconnect() on logout.
  */
 export function getSocket(): Socket {
-    if( socket && socket.connected ) return socket
+      if (socket) return socket   // 🔥 ALWAYS reuse same instance
 
     const token = typeof window !== 'undefined'
     ? localStorage.getItem('token')
@@ -36,6 +36,12 @@ export function getSocket(): Socket {
     })
 
     return socket
+}
+
+export function resetSocket() {
+  if (!socket) return
+
+  socket.removeAllListeners()
 }
 
 export function disconnectSocket(): void {
